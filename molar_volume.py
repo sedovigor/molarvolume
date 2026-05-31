@@ -21,7 +21,7 @@ def vdw_volume(smiles):
     for element, radius in alvarez_radii.items():
         if element not in atom_volumes:
             atom_volumes[element] = (4 / 3) * math.pi * (radius ** 3)
-    atom_sum = sum(atom_volumes.get(atom.GetSymbol(), 25) for atom in mol_h.GetAtoms())
+    atom_sum = sum(atom_volumes.get(atom.GetSymbol(), 0) for atom in mol_h.GetAtoms()) # zero volume for unknown elements, be careful
     num_bonds = mol_h.GetNumBonds()
     ring_info = mol.GetRingInfo()
     num_aromatic_rings = 0
